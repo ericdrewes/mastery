@@ -37,7 +37,8 @@ app.use(
     })
 )
 
-app.get("/api/characters", mainCtrl.getCharacters)
+app.get("/api/characters", mainCtrl.getCharacters);
+app.post("/api/favorites", mainCtrl.saveFavorite);
 
 app.listen(process.env.PORT || 3001, () => {
     console.log(`Listening on port: ${process.env.PORT || 3001}`);
