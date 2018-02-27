@@ -1,1 +1,1 @@
-select * from favorites order by name asc;
+select * from swapi_users order by name asc;

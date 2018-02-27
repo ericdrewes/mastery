@@ -87,7 +87,7 @@ class Favorite extends Component {
 
     return (
       <div>
-        
+       
         {!edit ? (
           <div>
             <h4>

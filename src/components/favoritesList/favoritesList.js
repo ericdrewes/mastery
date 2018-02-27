@@ -41,8 +41,8 @@ class FavoritesList extends Component {
   }
 
   handleRemove(id) {
-    axios.delete(`/api/favorites/${id}`).then(() => {
-      axios.get("/api/favorites").then(res => {
+    axios.delete(`/api/swapi_users/${id}`).then(() => {
+      axios.get("/api/swapi_users").then(res => {
         this.setState({
           list: res.data
         });
@@ -55,6 +55,8 @@ class FavoritesList extends Component {
     console.log(list);
     let favorites = list.map((character, index) => {
       return (
+        <div>
+        <p>HELLLLLOOO</p>
         <Favorite
           key={index}
           name={character.name}
@@ -64,6 +66,7 @@ class FavoritesList extends Component {
           confirmChanges={this.confirmChanges}
           handleRemove={this.handleRemove}
         />
+        </div>
       );
     });
     return <div>{favorites}</div>;

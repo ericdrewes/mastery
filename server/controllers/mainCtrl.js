@@ -27,10 +27,12 @@ module.exports = {
       .catch(err => res.status(500).json(err));
   },
   getFavorites: (req, res) => {
-    const db = req.app.get("db");
-    db
+    const dbInstance = req.app.get("db");
+    console.log("hello")
+    dbInstance
       .get_favorites()
       .then(characters => {
+        console.log(characters)
         res.status(200).json(characters);
       })
       .catch(err => res.status(500).json(err));

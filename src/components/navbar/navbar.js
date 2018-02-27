@@ -7,7 +7,7 @@ function NavBar() {
       <header className="App-header">
         <h1 className="App-title">Star Wars Characters</h1>
         <Link to="/">Character List</Link>
-        <Link to="/favorites">Favorites List</Link>
+        <Link to="/favoritesList">Favorites List</Link>
       </header>
     </div>
   );
