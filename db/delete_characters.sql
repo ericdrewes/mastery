@@ -1,0 +1,1 @@
+delete from favorites where favorites_id = $1 returning * ;

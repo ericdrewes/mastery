@@ -1,0 +1,1 @@
+insert into swapi_users (name, birth, gender) values (${name}, ${birth}, ${gender});

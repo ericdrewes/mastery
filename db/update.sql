@@ -1,0 +1,1 @@
+update favorites set (name=${name}, birth=${birth}, gender=${gender}) where favorites_id = $1 returning *;

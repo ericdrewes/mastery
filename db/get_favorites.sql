@@ -1,0 +1,1 @@
+select * from favorites order by name asc;
