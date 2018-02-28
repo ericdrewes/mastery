@@ -14,7 +14,7 @@ class CharacterList extends Component {
     };
     this.nextPage = this.nextPage.bind(this);
     this.prevPage = this.prevPage.bind(this);
-    this.handleSide = this.handleSide.bind(this);
+    // this.handleSide = this.handleSide.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
   }
 
@@ -49,23 +49,25 @@ class CharacterList extends Component {
     });
   }
 
-  handleSide(val) {
-    console.log("fired handle side", val);
-    const { newName } = this.state;
-    if (val === "dark") {
-      this.setState({
-        darkSide: true,
-        lightSide: false
-      });
-      alert(`Welcome to the Dark Side ${newName}`);
-    } else if (val === "light") {
-      this.setState({
-        darkSide: false,
-        lightSide: true
-      });
-      alert(`Welcome to the Light ${newName}`);
-    }
-  }
+  // handleSide(val) {
+  //   console.log("fired handle side", val);
+  //   const { newName } = this.state;
+  //   if (val === "dark") {
+  //     this.setState({
+  //       darkSide: true,
+  //       lightSide: false
+  //     });
+  //     alert(`Welcome to the Dark Side ${newName}`);
+  //   } else if (val === "light") {
+  //     this.setState({
+  //       darkSide: false,
+  //       lightSide: true
+  //     });
+  //          /* <ChooseSide handleSide={this.handleSide} /> *///
+
+  //     alert(`Welcome to the Light ${newName}`);
+  //   }
+  // }
 
   handleAdd(name, birth, gender) {
     axios.post("/api/favorites/add", {
@@ -93,7 +95,6 @@ class CharacterList extends Component {
           <p>name: {people.name}</p>
           <p>Birth Year: {people.birth_year}</p>
           <p>Gender: {people.gender}</p>
-          <ChooseSide handleSide={this.handleSide} />
           <button
           onClick={() => this.handleAdd(people.name, people.birth_year, people.gender)}
         >

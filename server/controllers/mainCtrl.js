@@ -21,7 +21,6 @@ module.exports = {
       .get("db")
       .post_character({ name, birth, gender })
       .then(character => {
-        console.log("savings");
         return res.status(200).json(character);
       })
       .catch(err => res.status(500).json(err));

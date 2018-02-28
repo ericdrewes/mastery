@@ -25,14 +25,14 @@ class FavoritesList extends Component {
 
   confirmChanges(id, name, birth, gender) {
     axios
-      .put("/api/favorites/update", {
+      .put("/api/swapi_users/update", {
         id,
         name,
         birth,
         gender,
       })
       .then(() => {
-        axios.get("/api/favorites").then(res => {
+        axios.get("/api/swapi_users").then(res => {
           this.setState({
             list: res.data
           });
@@ -53,16 +53,16 @@ class FavoritesList extends Component {
   render() {
     const { list } = this.state;
     console.log(list);
-    let favorites = list.map((character, index) => {
+    let favorites = list.map((people, index) => {
       return (
         <div>
-        <p>HELLLLLOOO</p>
+       
         <Favorite
           key={index}
-          name={character.name}
-          birth={character.birth}
-          gender={character.gender}
-          id={character.favorites_id}
+          name={people.name}
+          birth={people.birth}
+          gender={people.gender}
+          id={people.favorites_id}
           confirmChanges={this.confirmChanges}
           handleRemove={this.handleRemove}
         />
