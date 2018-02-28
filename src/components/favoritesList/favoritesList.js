@@ -51,7 +51,8 @@ class FavoritesList extends Component {
     console.log(list);
     let favorites = list.map((people, index) => {
       return (
-        <div       
+        <div 
+        key={index}      
         style={{
           border: "1px solid black",
           width: "20%",

@@ -84,6 +84,7 @@ class CharacterList extends Component {
       console.log(people);
       return (
         <div
+        key={index}
           style={{
             border: "1px solid black",
             width: "20%",
