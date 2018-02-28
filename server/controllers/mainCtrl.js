@@ -18,7 +18,7 @@ module.exports = {
     const { username, birth, gender } = req.body;
     req.app
       .get("db")
-      .post_character({ username, birth, gender })
+      .post_character({username, birth, gender })
       .then(character => {
         return res.status(200).json(character);
       })
