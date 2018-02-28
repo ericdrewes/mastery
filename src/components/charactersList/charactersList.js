@@ -70,7 +70,7 @@ class CharacterList extends Component {
   // }
 
   handleAdd(name, birth, gender) {
-    axios.post("/api/favorites/add", {
+    axios.post("/api/swapi_users/add", {
       name,
       birth,
       gender,

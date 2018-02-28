@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import Favorite from "../favorites/favorites";
 
-
 class FavoritesList extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +15,7 @@ class FavoritesList extends Component {
   }
 
   componentDidMount() {
-    axios.get("/api/favorites").then(res => {
+    axios.get("/api/swapi_users").then(res => {
       this.setState({
         list: res.data
       });
@@ -29,23 +28,20 @@ class FavoritesList extends Component {
         id,
         name,
         birth,
-        gender,
+        gender
       })
-      .then(() => {
-        axios.get("/api/swapi_users").then(res => {
+      .then((res) => {
           this.setState({
             list: res.data
           });
         });
-      });
   }
 
   handleRemove(id) {
-    axios.delete(`/api/swapi_users/${id}`).then(() => {
-      axios.get("/api/swapi_users").then(res => {
-        this.setState({
-          list: res.data
-        });
+    console.log(id);
+    axios.delete(`/api/swapi_users/${id}`).then(res => {
+      this.setState({
+        list: res.data
       });
     });
   }
@@ -55,17 +51,24 @@ class FavoritesList extends Component {
     console.log(list);
     let favorites = list.map((people, index) => {
       return (
-        <div>
-       
-        <Favorite
-          key={index}
-          name={people.name}
-          birth={people.birth}
-          gender={people.gender}
-          id={people.favorites_id}
-          confirmChanges={this.confirmChanges}
-          handleRemove={this.handleRemove}
-        />
+        <div       
+        style={{
+          border: "1px solid black",
+          width: "20%",
+          margin: "auto",
+          marginBottom: "1%",
+          marginTop: "1%"
+        }}>
+        
+          <Favorite
+            key={index}
+            name={people.username}
+            birth={people.birth}
+            gender={people.gender}
+            id={people.id}
+            confirmChanges={this.confirmChanges}
+            handleRemove={this.handleRemove}
+          />
         </div>
       );
     });

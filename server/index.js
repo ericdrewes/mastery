@@ -16,11 +16,11 @@ app.use(express.static(`${__dirname}/../build`));
 app.use(json());
 app.use(cors());
 
-// app.get("/api/characters", StarWarsCtrl.getCharacters);
-app.post("/api/favorites/add", mainCtrl.postCharacter);
-app.get("/api/favorites", mainCtrl.getFavorites);
-app.put("/api/favorites/update", mainCtrl.updateCharacter);
-app.delete("/api/favorites/:id", mainCtrl.removeCharacter);
+
+app.post("/api/swapi_users/add", mainCtrl.postCharacter);
+app.get("/api/swapi_users", mainCtrl.getFavorites);
+app.put("/api/swapi_users/update", mainCtrl.updateCharacter);
+app.delete("/api/swapi_users/:id", mainCtrl.removeCharacter);
 
 app.listen(port, () => {
   console.log(`Listening on port: ${port}`);

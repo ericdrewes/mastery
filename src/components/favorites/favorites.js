@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-
 class Favorite extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       edit: false,
+      id: props.id,
       newName: this.props.name,
       newBirth: this.props.birth,
       newGender: this.props.gender,
@@ -19,7 +19,6 @@ class Favorite extends Component {
     this.toggleEdit = this.toggleEdit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleSide = this.handleSide.bind(this);
   }
 
   toggleEdit() {
@@ -37,28 +36,10 @@ class Favorite extends Component {
 
   handleSubmit() {
     const { id, confirmChanges } = this.props;
-    const { newName, newBirth, newGender} = this.state;
-    confirmChanges(id, newName, newBirth, newGender);
+    const { username, birth, gender } = this.state;
+    confirmChanges(this.state);
     this.toggleEdit();
   }
-
-  // handleSide(val) {
-  //   console.log("fired handle side", val)
-  //   const { newName } = this.state;
-  //   if (val === "dark") {
-  //     this.setState({
-  //       darkSide: true,
-  //       lightSide: false
-  //     });
-  //     alert(`Welcome to the Dark Side ${newName}`);
-  //   } else if (val === "light") {
-  //     this.setState({
-  //       darkSide: false,
-  //       lightSide: true
-  //     });
-  //     alert(`Welcome to the Light ${newName}`);
-  //   }
-  // }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.name !== this.props.name) {
@@ -69,25 +50,12 @@ class Favorite extends Component {
   }
 
   render() {
-    const {
-      id,
-      name,
-      birth,
-      gender,
-      handleRemove
-    } = this.props;
-    const {
-      newName,
-      newBirth,
-      newGender,
-      darkSide,
-      lightSide
-    } = this.state;
+    const { id, name, birth, gender, handleRemove } = this.props;
+    const { updatedName, updatedBirth, updatedGender } = this.state;
     const { edit } = this.state;
 
     return (
       <div>
-       
         {!edit ? (
           <div>
             <h4>
@@ -96,30 +64,29 @@ class Favorite extends Component {
             <p>Birth: {birth}</p>
             <p>Gender: {gender}</p>
             <br />
-            <button onClick={this.toggleEdit}>Edit Character</button>
+            <button onClick={this.toggleEdit}>Edit</button>
           </div>
         ) : (
           <div>
             <label>Name:</label>
             <input
-              value={newName}
-              onChange={e => this.handleChange("newName", e.target.value)}
+              value={updatedName}
+              onChange={e => this.handleChange("updatedName", e.target.value)}
             />
             <label>Birth:</label>
             <input
-              value={newBirth}
-              onChange={e => this.handleChange("newBirth", e.target.value)}
+              value={updatedBirth}
+              onChange={e => this.handleChange("updatedBirth", e.target.value)}
             />
             <label>Gender:</label>
             <input
-              value={newGender}
-              onChange={e => this.handleChange("newGender", e.target.value)}
+              value={updatedGender}
+              onChange={e => this.handleChange("updatedGender", e.target.value)}
             />
-            <button onClick={this.handleSubmit}>Save Changes</button>
+            <button onClick={this.handleSubmit}>Save</button>
           </div>
         )}
-        <button onClick={() => handleRemove(id)}>Remove Character</button>
-      
+        <button onClick={() => handleRemove(id)}>Remove</button>
       </div>
     );
   }

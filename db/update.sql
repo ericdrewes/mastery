@@ -1,1 +1,2 @@
-update favorites set (name=${name}, birth=${birth}, gender=${gender}) where favorites_id = $1 returning *;
+UPDATE swapi_users SET username=${username}, birth=${birth}, gender=${gender} WHERE id=${id};
+select * from swapi_users;

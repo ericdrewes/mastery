@@ -1,1 +1,2 @@
-delete from favorites where favorites_id = $1 returning * ;
+delete from swapi_users where id = ${id};
+select * from swapi_users;

@@ -15,11 +15,10 @@ module.exports = {
       .catch(err => res.status(500).json(err));
   },
   postCharacter: (req, res) => {
-    const { name, birth, gender } = req.body;
-    console.log(req.app.get("db").post_character);
+    const { username, birth, gender } = req.body;
     req.app
       .get("db")
-      .post_character({ name, birth, gender })
+      .post_character({ username, birth, gender })
       .then(character => {
         return res.status(200).json(character);
       })
@@ -27,30 +26,33 @@ module.exports = {
   },
   getFavorites: (req, res) => {
     const dbInstance = req.app.get("db");
-    console.log("hello")
     dbInstance
       .get_favorites()
       .then(characters => {
-        console.log(characters)
         res.status(200).json(characters);
       })
       .catch(err => res.status(500).json(err));
   },
   updateCharacter: (req, res) => {
-    const db = req.app.get("db");
-    const { id, name, birth, gender } = req.body;
-    db
-      .update_character([id, name, birth, gender])
+    const dbInstance = req.app.get("db");
+    console.log(req.body);
+    dbInstance
+      .update({
+        username: req.body.id.updatedName,
+        birth: req.body.id.updatedBirth,
+        gender: req.body.id.updatedGender,
+        id: req.body.id.id
+      })
       .then(character => {
         res.status(200).json(character);
       })
-      .catch(err => res.status(500).json(err));
+      .catch(console.log);
   },
   removeCharacter: (req, res) => {
     const db = req.app.get("db");
     const { id } = req.params;
     db
-      .remove_character([id])
+      .delete_characters(req.params)
       .then(character => {
         res.status(200).json(character);
       })
